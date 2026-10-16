@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pluginId": "0cf4a20a-aaeb-4938-9896-7587dec8802b",
+  "sdkVersion": "0.2.0",
+  "name": "evoX Kaynak İzleyici",
+  "description": "CPU, GPU, RAM ve disk kullanımını tuş üzerinde halka göstergeyle gösterir.",
+  "version": "2.0.0",
+  "glyph": "Activity01Icon",
+  "runtime": { "kind": "trusted-node", "entry": "runtime.mjs" },
+  "hostCompatibility": { "minimumVersion": "0.2.0" },
+  "permissions": [{ "name": "key.display" }],
+  "settingsSchema": [],
+  "actions": [
+    {
+      "id": "cpu", "name": "CPU", "description": "Kaynak İzleyici: işlemci kullanımı + sıcaklık", "glyph": "Activity01Icon",
+      "controllers": ["Keypad"], "supportedInMultiActions": false,
+      "settingsSchema": [
+        { "key": "interval", "type": "select", "label": "Güncelleme aralığı", "default": "2",
+          "options": [{ "value": "1", "label": "1 sn" }, { "value": "2", "label": "2 sn" }, { "value": "3", "label": "3 sn" }, { "value": "5", "label": "5 sn" }, { "value": "10", "label": "10 sn" }] },
+        { "key": "lhmUrl", "type": "url", "label": "LibreHardwareMonitor adresi (sıcaklık için)", "default": "http://localhost:8085/data.json",
+          "description": "LHM > Options > Remote Web Server açık olmalı. Boş bırakılırsa sıcaklık gösterilmez." }
+      ]
+    },
+    {
+      "id": "gpu", "name": "GPU", "description": "Kaynak İzleyici: ekran kartı kullanımı, sıcaklık, VRAM", "glyph": "ZapIcon",
+      "controllers": ["Keypad"], "supportedInMultiActions": false,
+      "settingsSchema": [
+        { "key": "interval", "type": "select", "label": "Güncelleme aralığı", "default": "2",
+          "options": [{ "value": "1", "label": "1 sn" }, { "value": "2", "label": "2 sn" }, { "value": "3", "label": "3 sn" }, { "value": "5", "label": "5 sn" }, { "value": "10", "label": "10 sn" }] },
+        { "key": "lhmUrl", "type": "url", "label": "LibreHardwareMonitor adresi (NVIDIA dışı GPU için)", "default": "http://localhost:8085/data.json" }
+      ]
+    },
+    {
+      "id": "ram", "name": "RAM", "description": "Kaynak İzleyici: bellek kullanımı", "glyph": "Layers01Icon",
+      "controllers": ["Keypad"], "supportedInMultiActions": false,
+      "settingsSchema": [
+        { "key": "interval", "type": "select", "label": "Güncelleme aralığı", "default": "2",
+          "options": [{ "value": "1", "label": "1 sn" }, { "value": "2", "label": "2 sn" }, { "value": "3", "label": "3 sn" }, { "value": "5", "label": "5 sn" }, { "value": "10", "label": "10 sn" }] }
+      ]
+    },
+    {
+      "id": "disk", "name": "Disk", "description": "Kaynak İzleyici: sürücü doluluğu ve boş alan", "glyph": "Database01Icon",
+      "controllers": ["Keypad"], "supportedInMultiActions": false,
+      "settingsSchema": [
+        { "key": "mode", "type": "select", "label": "Gösterim", "default": "single",
+          "options": [{ "value": "single", "label": "Tek sürücü" }, { "value": "all", "label": "Tüm sürücüler sırayla" }] },
+        { "key": "drive", "type": "text", "label": "Sürücü harfi", "default": "C", "placeholder": "C",
+          "visibleWhen": { "key": "mode", "in": ["single"] } },
+        { "key": "interval", "type": "select", "label": "Güncelleme aralığı", "default": "5",
+          "options": [{ "value": "2", "label": "2 sn" }, { "value": "5", "label": "5 sn" }, { "value": "10", "label": "10 sn" }, { "value": "30", "label": "30 sn" }] }
+      ]
+    }
+  ]
+}

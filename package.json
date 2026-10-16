@@ -1,0 +1,16 @@
+{
+  "name": "evox-sysmon",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "evoX Kaynak İzleyici — evoX T1 (trusted-node) yerel plugin: CPU, GPU, RAM, disk.",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@evoxapp/plugin-sdk": "0.2.0",
+    "sharp": "^0.35.5"
+  }
+}
